@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../features/products/di/products_dependency.dart';
 import 'dart:developer' as developer;
 
@@ -42,7 +41,6 @@ Future<void> init() async {
     );
     return dio;
   });
-  sl.registerLazySingleton(() => InternetConnectionChecker.createInstance());
 
   // Features - Products
   await initProductsDependencies();
