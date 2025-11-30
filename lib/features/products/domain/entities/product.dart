@@ -1,15 +1,14 @@
-class Product {
-  final String id;
-  final String name;
-  final String description;
-  final double price;
-  final String imageUrl;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Product({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.imageUrl,
-  });
+part 'product.freezed.dart';
+
+@freezed
+abstract class Product with _$Product {
+  const factory Product({
+    required String id,
+    required String name,
+    required String description,
+    required double price,
+    required String imageUrl,
+  }) = _Product;
 }

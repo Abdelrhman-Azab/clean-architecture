@@ -1,4 +1,5 @@
 import '../../../../core/di/injection_container.dart';
+import '../data/datasources/products_local_data_source.dart';
 import '../data/datasources/products_remote_data_source.dart';
 import '../data/repositories/products_repository_impl.dart';
 import '../domain/repositories/products_repository.dart';
@@ -13,8 +14,11 @@ Future<void> initProductsDependencies() async {
   sl.registerLazySingleton(() => GetProducts(sl()));
 
   // Repository
-  sl.registerLazySingleton<ProductsRepository>(() => ProductsRepositoryImpl(remoteDataSource: sl()));
+  sl.registerLazySingleton<ProductsRepository>(
+    () => ProductsRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()),
+  );
 
   // Data Sources
   sl.registerLazySingleton<ProductsRemoteDataSource>(() => ProductsRemoteDataSourceImpl(dio: sl()));
+  sl.registerLazySingleton<ProductsLocalDataSource>(() => ProductsLocalDataSourceImpl(box: sl()));
 }
