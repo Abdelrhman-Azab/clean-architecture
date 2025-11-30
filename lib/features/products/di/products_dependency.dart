@@ -15,7 +15,7 @@ Future<void> initProductsDependencies() async {
 
   // Repository
   sl.registerLazySingleton<ProductsRepository>(
-    () => ProductsRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()),
+    () => ProductsRepositoryImpl(remoteDataSource: sl(), localDataSource: sl(), connectionChecker: sl()),
   );
 
   // Data Sources
